@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>olay</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #ffeeaa;
+            font-family: "Comic Sans MS", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #ff6f91;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .image {
+            width: 200px;
+            margin-bottom: 20px;
+        }
+
+        #buttonContainer {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            color: white;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        #yesBtn {
+            background-color: #ffb3c6;
+        }
+
+        #noBtn {
+            background-color: #ff6f91;
+        }
+
+        #noBtn:hover {
+            transform: scale(1.2) rotate(10deg);
+            background-color: #ff5e5e;
+        }
+
+        .message {
+            font-size: 1.8em;
+            color: #ff6f91;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            button {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+
+            .message {
+                font-size: 1.5em;
+            }
+
+            .image {
+                width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img id="gifImage" src="https://media3.giphy.com/media/X5cAKRomD50t3d04ke/giphy.gif?cid=6c09b9520p6tm188u7wbbijjasg1s4ke3sy8echcj9e96yic&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="" class="image">
+    <h1 id="questionText"> ກົດ Yes ໄດ້ໃຫ້ 100,000kip </h1>
+    <div id="buttonContainer">
+        <button id="yesBtn">No 🥰</button>
+        <button id="noBtn">Yes 🤪</button>
+    </div>
+    <div id="message"></div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const messageDiv = document.getElementById('message');
+        const gifImage = document.getElementById('gifImage');
+        const questionText = document.getElementById('questionText');
+
+        noBtn.addEventListener('touchstart', moveButton);
+noBtn.addEventListener('click', moveButton);
+
+function moveButton() {
+
+    const maxX = window.innerWidth - noBtn.offsetWidth;
+    const maxY = window.innerHeight - noBtn.offsetHeight;
+
+
+    let randomX, randomY;
+
+    do {
+        randomX = Math.floor(Math.random() * maxX);
+        randomY = Math.floor(Math.random() * maxY);
+    } while (
+        Math.abs(randomX - noBtn.offsetLeft) < 50 || 
+        Math.abs(randomY - noBtn.offsetTop) < 50
+    );
+
+
+    noBtn.style.position = 'absolute';
+    noBtn.style.left = `${randomX}px`;
+    noBtn.style.top = `${randomY}px`;
+}
+
+        yesBtn.addEventListener('click', () => {
+            gifImage.src = "https://media1.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/giphy.gif?cid=6c09b952sfudxvv78o5bztqfud8hugy12pgzfo5m9ydmrf9i&ep=v1_gifs_search&rid=giphy.gif&ct=g";
+            gifImage.style.display = "block";
+            questionText.style.display = "none";
+            messageDiv.textContent = " ຫັ່ນແນ! ກົດບໍ່ໄດ້ແມ່ນບໍ😁 ສົມນ້ຳໜ້າ🤣";
+        });
+    </script>
+    <footer>
+        
+    </footer>
+</body>
+</html>
